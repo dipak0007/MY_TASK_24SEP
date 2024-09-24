@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Table with Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #343a40;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .search-bar input[type="submit"] {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-bar input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        
+
+        
+
+        
+
+        img {
+            width: 200px; /* Adjust as needed */
+            height: auto;
+        }
+
+        
+
+
+        .no-records {
+            text-align: center;
+            color: #6c757d; /* Gray color for no records */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>MY DETAILS..!</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form  action="">
+            <input type="text" name="search" placeholder="Search..." required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Mobile</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if mydata %}
+            {% for value in mydata %}
+            <tr>
+                <td>{{ value.id }}</td>
+                <td><img src="{{ value.image.url }}" alt="Profile image of {{ value.name }}"></td>
+                <td>{{ value.name }}</td>
+                <td>{{ value.email }}</td>
+                <td>{{ value.city }}</td>
+                <td>{{ value.number }}</td>
+                <td>
+                   <a href="{% url 'edit_get_data' pk=value.id %}">Edit</a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_view' pk=value.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="8" class="no-records">No records found.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+</body>
+</html>

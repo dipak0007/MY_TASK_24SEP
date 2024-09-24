@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'update_my_data' pk=mydata.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <h1>EDIT DETAILS...!</h1>
+    {% if mydata %}
+
+
+    <label for="">Upload Image:</label>
+    <input type="file" value="{{mydata.image}}" accept="image/*" name="image"><br><br>
+
+    
+    <label for=""> Name : </label>
+    <input type="text" name="name" value="{{mydata.name}}" placeholder="ENTER YOUR NAME..." ><br><br>
+
+
+
+    <label for="">email : </label>
+    <input type="email" name="email" value="{{mydata.email}}" placeholder="ENTER YOUR EMAIL..!"><br><br>
+
+    <label for="">City : </label>
+    <input type="text" name="city" value="{{mydata.city}}" placeholder="ENTER YOUR CITY"><br><br>
+
+    <label for="">Mobile :</label>
+    <input type="number" name="mobile" value="{{mydata.number}}" placeholder="ENTER YPUR MOBILE NUMBER..."><br><br>
+
+    <input type="submit" value="UPDATE">
+    {% endif %}
+
+</form>
+</body>
+</html>
